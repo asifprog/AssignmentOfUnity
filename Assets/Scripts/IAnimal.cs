@@ -8,13 +8,14 @@ public class IAnimal : MonoBehaviour
     public GameObject PlayerI { get; set; }
     float xpos;
     float zpos;
+    public static int time=200;
     public static bool flag;
     public static int Cnt;
     public static  bool WLFlag;
     public GameObject[] prefabs;
     public GameObject CounterDisplay;
     private string str = "Go";
-    private int TimeEnd =0;
+    public  static int TimeEnd =0;
     public static bool IAds;
     //GameObject PlayerI {get;set;}
 
@@ -79,7 +80,7 @@ public class IAnimal : MonoBehaviour
     }
    IEnumerator TimerForEnd()
     {
-        for (int j=0;j<=200;j++)
+        for (int j=0;j<=time;j++)
         {
             Timer.GetComponent<Text>().text = TimeEnd.ToString();
             TimeEnd++;
@@ -94,7 +95,7 @@ public class IAnimal : MonoBehaviour
    private void Update()
     {
         Timer.GetComponent<Text>().text = TimeEnd.ToString();
-        if(TimeEnd<200 && DestroyFruit.ScorePlayer>=10)
+        if(TimeEnd<time && DestroyFruit.ScorePlayer>=20)
         {
           //  Screen.gameObject.SetActive(true);
             source.Stop();
@@ -102,10 +103,11 @@ public class IAnimal : MonoBehaviour
             StartCoroutine(WaitForEnd());
             WLFlag = true;
             IAds = true;
+            Console.ACnt = 0;
             SceneManager.LoadScene("Console", LoadSceneMode.Single);
 
         }
-        if (TimeEnd >= 200 && DestroyFruit.ScorePlayer<10)
+        if (TimeEnd >= time && DestroyFruit.ScorePlayer<20)
         {
             //Screen.gameObject.SetActive(true);
             source.Stop();
@@ -113,6 +115,7 @@ public class IAnimal : MonoBehaviour
             StartCoroutine(WaitForEnd());
             WLFlag = false;
             IAds = true;
+            Console.ACnt = 0;
             SceneManager.LoadScene("Console", LoadSceneMode.Single);
         }
     }

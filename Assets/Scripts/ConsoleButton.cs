@@ -11,13 +11,22 @@ public class ConsoleButton : MonoBehaviour
     public void OnClickMenu()
     {
         DestroyFruit.ScorePlayer = 0;
+        IAnimal.time = 200;
+        IAnimal.TimeEnd = 0;
         IAnimal.IAds = true;
+       
+        Console.ACnt = 0;
         SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
     public void OnClickReplay()
     {
         DestroyFruit.ScorePlayer = 0;
+        IAnimal.time = 200;
+        IAnimal.TimeEnd = 0;
         IAnimal.IAds = true;
+        
+        Console.ACnt = 0;
         SceneManager.LoadScene("BrightDay", LoadSceneMode.Single);
+
     }
 }

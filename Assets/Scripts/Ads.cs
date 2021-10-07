@@ -23,6 +23,7 @@ public class Ads : MonoBehaviour, IUnityAdsListener
         {
             Advertisement.Show("Rewarded_Android");
             inc = true;
+            IAnimal.time = 0;
         }
         else
         {
@@ -54,6 +55,5 @@ public class Ads : MonoBehaviour, IUnityAdsListener
     // Update is called once per frame
     void Update()
     {
-        
     }
 }

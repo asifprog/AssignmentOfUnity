@@ -12,6 +12,7 @@ public class Console : MonoBehaviour
  string GameId="4383857";
 #endif
     // Start is called before the first frame update
+    public  static int ACnt=0;
     public GameObject Screen;
     public GameObject CurrScore;
     public GameObject HighScore;
@@ -28,13 +29,16 @@ public class Console : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (IAnimal.IAds == true)
+        if (IAnimal.IAds == true && ACnt==0)
         {
             if (Advertisement.IsReady("Interstitial_Android"))
             {
                 Advertisement.Show("Interstitial_Android");
+                ACnt = 1;
                 IAnimal.IAds = false;
             }
+            IAnimal.IAds = false;
+            ACnt = 1;
         }
         else
         {
@@ -49,8 +53,10 @@ public class Console : MonoBehaviour
                 CurrScore.GetComponent<Text>().text = "Current Score:" + DestroyFruit.ScorePlayer.ToString();
                 if(Ads.inc==true)
                 {
+                    IAnimal.time = IAnimal.time + 5;
                     DestroyFruit.ScorePlayer = DestroyFruit.ScorePlayer + 5;
                     CurrScore.GetComponent<Text>().text = "Current Score:" + DestroyFruit.ScorePlayer.ToString();
+                    Ads.inc = false;
                 }
             }
 
@@ -60,11 +66,14 @@ public class Console : MonoBehaviour
                 highscore = DestroyFruit.ScorePlayer;
                 //text.text = "" + ;
                 PlayerPrefs.SetInt("highscore", highscore);
+                PlayerPrefs.GetInt("highscore", highscore);
                 HighScore.GetComponent<Text>().text = "High Score:" + highscore.ToString();
                 if (Ads.inc == true)
                 {
+                    IAnimal.time = IAnimal.time + 5;
                     DestroyFruit.ScorePlayer = DestroyFruit.ScorePlayer + 5;
                     CurrScore.GetComponent<Text>().text = "Current Score:" + DestroyFruit.ScorePlayer.ToString();
+                    Ads.inc = false;
                 }
             }
         }
