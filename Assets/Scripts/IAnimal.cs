@@ -9,14 +9,19 @@ public class IAnimal : MonoBehaviour
     float xpos;
     float zpos;
     public static int time=200;
+    public static int size = 2;
     public static bool flag;
+    int cntanimal = 0;
     public static int Cnt;
     public static  bool WLFlag;
-    public GameObject[] prefabs;
+    public  GameObject[] prefabs;
+   public static List<string> animalname = new List<string>();
+    //public static string[] animalname=new string[size];
     public GameObject CounterDisplay;
     private string str = "Go";
     public  static int TimeEnd =0;
     public static bool IAds;
+    public static string pname;
     //GameObject PlayerI {get;set;}
 
     public GameObject Timer;
@@ -57,7 +62,21 @@ public class IAnimal : MonoBehaviour
             StartCoroutine(Counter());
             //PlayerI =
             PlayerI =Instantiate(prefabs[0], new Vector3(xpos, 4, zpos), Quaternion.identity);
+            pname = gameObject.name;
+            Debug.Log(prefabs[0].name);
             CameraMovement.instance.Initialize(PlayerI);
+            //animalname.Add(prefabs[0].name);
+            if (animalname.Count==0)
+            {
+                animalname.Add(prefabs[0].name);
+                animalname.Add(DestroyFruit.ScorePlayer.ToString());
+
+                Debug.Log("called");
+                // animalname[0] = prefabs[0].name;
+
+                cntanimal = 0;
+                OnDestroy();
+            }
             //Cnt = 0;
             flag = true;
             source.Play();
@@ -78,7 +97,14 @@ public class IAnimal : MonoBehaviour
         }*/
 
     }
-   IEnumerator TimerForEnd()
+    void OnDestroy()
+    {
+        PlayerPrefs.SetString(animalname[cntanimal],prefabs[cntanimal].name);
+        PlayerPrefs.SetString(animalname[cntanimal+1],DestroyFruit.ScorePlayer.ToString());
+
+        PlayerPrefs.Save();
+    }
+    IEnumerator TimerForEnd()
     {
         for (int j=0;j<=time;j++)
         {
@@ -102,8 +128,9 @@ public class IAnimal : MonoBehaviour
           // Screen.GetComponent<Text>().text = Win;
             StartCoroutine(WaitForEnd());
             WLFlag = true;
-            IAds = true;
-            Console.ACnt = 0;
+            IAds = false;
+            Console.ACnt = 1;
+          
             SceneManager.LoadScene("Console", LoadSceneMode.Single);
 
         }
@@ -114,8 +141,9 @@ public class IAnimal : MonoBehaviour
            // Screen.GetComponent<Text>().text = Loss;
             StartCoroutine(WaitForEnd());
             WLFlag = false;
-            IAds = true;
-            Console.ACnt = 0;
+            IAds = false;
+            Console.ACnt = 1;
+            
             SceneManager.LoadScene("Console", LoadSceneMode.Single);
         }
     }

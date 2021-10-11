@@ -13,10 +13,12 @@ public class Console : MonoBehaviour
 #endif
     // Start is called before the first frame update
     public  static int ACnt=0;
+    int cntanimal=0;
     public GameObject Screen;
     public GameObject CurrScore;
     public GameObject HighScore;
-    public static int highscore=0;
+    public static int highscore;
+    //public static int[] animalscore;
     private string Win = "Congrats   You Win...";
     private string Loss = "Unfrtunately   You Loss...";
     void Start()
@@ -46,6 +48,7 @@ public class Console : MonoBehaviour
             {
                 Screen.GetComponent<Text>().text = Win;
                 CurrScore.GetComponent<Text>().text = "Current Score:" + DestroyFruit.ScorePlayer.ToString();
+                StoreAnimalScore(IAnimal.pname,DestroyFruit.ScorePlayer);
             }
             if (IAnimal.WLFlag == false)
             {
@@ -56,6 +59,8 @@ public class Console : MonoBehaviour
                     IAnimal.time = IAnimal.time + 5;
                     DestroyFruit.ScorePlayer = DestroyFruit.ScorePlayer + 5;
                     CurrScore.GetComponent<Text>().text = "Current Score:" + DestroyFruit.ScorePlayer.ToString();
+                    StoreAnimalScore(IAnimal.pname, DestroyFruit.ScorePlayer);
+
                     Ads.inc = false;
                 }
             }
@@ -67,12 +72,14 @@ public class Console : MonoBehaviour
                 //text.text = "" + ;
                 PlayerPrefs.SetInt("highscore", highscore);
                 PlayerPrefs.GetInt("highscore", highscore);
+                OnDestroy();
                 HighScore.GetComponent<Text>().text = "High Score:" + highscore.ToString();
                 if (Ads.inc == true)
                 {
                     IAnimal.time = IAnimal.time + 5;
                     DestroyFruit.ScorePlayer = DestroyFruit.ScorePlayer + 5;
                     CurrScore.GetComponent<Text>().text = "Current Score:" + DestroyFruit.ScorePlayer.ToString();
+                    StoreAnimalScore(IAnimal.pname, DestroyFruit.ScorePlayer);
                     Ads.inc = false;
                 }
             }
@@ -85,5 +92,19 @@ public class Console : MonoBehaviour
         PlayerPrefs.SetInt("highscore", highscore);
         PlayerPrefs.Save();
     }
+    void StoreAnimalScore(string animaln, int animals)
+    {
+        int len = IAnimal.animalname.Count;
+        for (int k=0;k<len;k=k+2)
+        {
+            if (string.Compare(IAnimal.animalname[k], animaln)==0)
+            {
 
+                IAnimal.animalname[k+1] = animals.ToString();
+               PlayerPrefs.SetString(IAnimal.animalname[k+1],animals.ToString());
+                PlayerPrefs.Save();
+                break;
+            }
+        }
+    }
 }
