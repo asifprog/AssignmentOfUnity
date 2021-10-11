@@ -15,7 +15,7 @@ public class IAnimal : MonoBehaviour
     public static int Cnt;
     public static  bool WLFlag;
     public  GameObject[] prefabs;
-   public static List<string> animalname = new List<string>();
+  // public static List<string> animalname = new List<string>();
     //public static string[] animalname=new string[size];
     public GameObject CounterDisplay;
     private string str = "Go";
@@ -63,20 +63,10 @@ public class IAnimal : MonoBehaviour
             //PlayerI =
             PlayerI =Instantiate(prefabs[0], new Vector3(xpos, 4, zpos), Quaternion.identity);
             pname = gameObject.name;
-            Debug.Log(prefabs[0].name);
+          //  Debug.Log(prefabs[0].name);
             CameraMovement.instance.Initialize(PlayerI);
             //animalname.Add(prefabs[0].name);
-            if (animalname.Count==0)
-            {
-                animalname.Add(prefabs[0].name);
-                animalname.Add(DestroyFruit.ScorePlayer.ToString());
-
-                Debug.Log("called");
-                // animalname[0] = prefabs[0].name;
-
-                cntanimal = 0;
-                OnDestroy();
-            }
+         
             //Cnt = 0;
             flag = true;
             source.Play();
@@ -96,13 +86,6 @@ public class IAnimal : MonoBehaviour
             // objectToGenerate += 1;
         }*/
 
-    }
-    void OnDestroy()
-    {
-        PlayerPrefs.SetString(animalname[cntanimal],prefabs[cntanimal].name);
-        PlayerPrefs.SetString(animalname[cntanimal+1],DestroyFruit.ScorePlayer.ToString());
-
-        PlayerPrefs.Save();
     }
     IEnumerator TimerForEnd()
     {
@@ -130,7 +113,7 @@ public class IAnimal : MonoBehaviour
             WLFlag = true;
             IAds = false;
             Console.ACnt = 1;
-          
+            StoreAnimalScore(SaveName.pname, DestroyFruit.ScorePlayer);
             SceneManager.LoadScene("Console", LoadSceneMode.Single);
 
         }
@@ -143,10 +126,25 @@ public class IAnimal : MonoBehaviour
             WLFlag = false;
             IAds = false;
             Console.ACnt = 1;
+            StoreAnimalScore(SaveName.pname,DestroyFruit.ScorePlayer);
             
             SceneManager.LoadScene("Console", LoadSceneMode.Single);
         }
     }
     // Start is called before the first frame update
+    void StoreAnimalScore(string playern, int players)
+    {
+        int len = SaveName.animalname.Count;
+        for (int k = 0; k < len; k = k + 2)
+        {
+            if (string.Compare(SaveName.animalname[k], playern) == 0)
+            {
 
+                SaveName.animalname[k + 1] = players.ToString();
+                PlayerPrefs.SetString(SaveName.animalname[k + 1], players.ToString());
+                PlayerPrefs.Save();
+                break;
+            }
+        }
+    }
 }

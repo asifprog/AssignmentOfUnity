@@ -48,7 +48,7 @@ public class Console : MonoBehaviour
             {
                 Screen.GetComponent<Text>().text = Win;
                 CurrScore.GetComponent<Text>().text = "Current Score:" + DestroyFruit.ScorePlayer.ToString();
-                StoreAnimalScore(IAnimal.pname,DestroyFruit.ScorePlayer);
+                StoreAnimalScore(SaveName.pname, DestroyFruit.ScorePlayer);
             }
             if (IAnimal.WLFlag == false)
             {
@@ -59,7 +59,7 @@ public class Console : MonoBehaviour
                     IAnimal.time = IAnimal.time + 5;
                     DestroyFruit.ScorePlayer = DestroyFruit.ScorePlayer + 5;
                     CurrScore.GetComponent<Text>().text = "Current Score:" + DestroyFruit.ScorePlayer.ToString();
-                    StoreAnimalScore(IAnimal.pname, DestroyFruit.ScorePlayer);
+                    StoreAnimalScore(SaveName.pname, DestroyFruit.ScorePlayer);
 
                     Ads.inc = false;
                 }
@@ -79,7 +79,7 @@ public class Console : MonoBehaviour
                     IAnimal.time = IAnimal.time + 5;
                     DestroyFruit.ScorePlayer = DestroyFruit.ScorePlayer + 5;
                     CurrScore.GetComponent<Text>().text = "Current Score:" + DestroyFruit.ScorePlayer.ToString();
-                    StoreAnimalScore(IAnimal.pname, DestroyFruit.ScorePlayer);
+                    StoreAnimalScore(SaveName.pname, DestroyFruit.ScorePlayer);
                     Ads.inc = false;
                 }
             }
@@ -94,14 +94,14 @@ public class Console : MonoBehaviour
     }
     void StoreAnimalScore(string animaln, int animals)
     {
-        int len = IAnimal.animalname.Count;
+        int len = SaveName.animalname.Count;
         for (int k=0;k<len;k=k+2)
         {
-            if (string.Compare(IAnimal.animalname[k], animaln)==0)
+            if (string.Compare(SaveName.animalname[k], animaln)==0)
             {
 
-                IAnimal.animalname[k+1] = animals.ToString();
-               PlayerPrefs.SetString(IAnimal.animalname[k+1],animals.ToString());
+                SaveName.animalname[k+1] = animals.ToString();
+               PlayerPrefs.SetString(SaveName.animalname[k+1],animals.ToString());
                 PlayerPrefs.Save();
                 break;
             }

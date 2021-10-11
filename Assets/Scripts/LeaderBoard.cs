@@ -22,14 +22,14 @@ public class LeaderBoard : MonoBehaviour
     }
     public void LeaderB()
     {
-        int len = IAnimal.animalname.Count;
+        int len = SaveName.animalname.Count;
         for (int i = 0; i < len; i=i+2)
         {
             GameObject NewGO = Instantiate(row, table);
             Text[] texts = NewGO.GetComponentsInChildren<Text>();
             //texts[0].text = i.ToString();
-            texts[0].text =IAnimal.animalname[i];
-            texts[1].text = IAnimal.animalname[i+1];
+            texts[0].text = SaveName.animalname[i];
+            texts[1].text = SaveName.animalname[i+1];
 
         }
     }
