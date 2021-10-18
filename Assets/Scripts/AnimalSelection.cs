@@ -10,12 +10,12 @@ public class AnimalSelection : MonoBehaviour
     {
        // AnimalInterface.Bpressed = true;
         AnimalInterface.BPress= true;
-        SceneManager.LoadScene("BrightDay", LoadSceneMode.Single);
+        SceneManager.LoadScene(SceneName.sceneOfGame.BrightDay.ToString(), LoadSceneMode.Single);
     }
     public void DeerInstantiate()
     {
         //AnimalInterface.Dpressed = true;
         AnimalInterface.DPress= true;
-        SceneManager.LoadScene("BrightDay", LoadSceneMode.Single);
+        SceneManager.LoadScene(SceneName.sceneOfGame.BrightDay.ToString(), LoadSceneMode.Single);
     }
 }

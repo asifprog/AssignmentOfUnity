@@ -18,6 +18,6 @@ public class Menu : MonoBehaviour
     }
     public void LevelsToEpisodeSelect()
     {
-        SceneManager.LoadScene("SelectEpisodes", LoadSceneMode.Single);
+        SceneManager.LoadScene("AnimalSelection", LoadSceneMode.Single);
     }
 }

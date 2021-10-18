@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.SceneManagement;
-
 public class ConsoleButton : MonoBehaviour
 {
     // Start is called before the first frame update
-
+   
     public void OnClickMenu()
     {
         DestroyFruit.ScorePlayer = 0;
@@ -16,7 +15,7 @@ public class ConsoleButton : MonoBehaviour
         IAnimal.IAds = true;
        
         Console.ACnt = 0;
-        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+        SceneManager.LoadScene(SceneName.sceneOfGame.Menu.ToString(), LoadSceneMode.Single);
     }
     public void OnClickReplay()
     {
@@ -26,7 +25,9 @@ public class ConsoleButton : MonoBehaviour
         IAnimal.IAds = true;
         
         Console.ACnt = 0;
-        SceneManager.LoadScene("BrightDay", LoadSceneMode.Single);
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneName.sceneOfGame.BrightDay.ToString(), LoadSceneMode.Single);
 
     }
+  
 }

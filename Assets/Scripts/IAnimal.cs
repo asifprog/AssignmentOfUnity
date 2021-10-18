@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class IAnimal : MonoBehaviour
 {
+    public GameObject paused;
+    public GameObject gamePlay;
+    public GameObject console;
     public GameObject PlayerI { get; set; }
     float xpos;
     float zpos;
@@ -27,14 +30,14 @@ public class IAnimal : MonoBehaviour
     public GameObject Timer;
    // public GameObject Screen;
 
-    public AudioSource source;
+    //public AudioSource source;
 
     void Start()
     {
        //Screen.gameObject.SetActive(false);
         StartCoroutine(ObjectGenerator());
         StartCoroutine(TimerForEnd());
-        source = GetComponent<AudioSource>();
+      //  source = GetComponent<AudioSource>();
     }
     IEnumerator Counter()
     {
@@ -69,7 +72,7 @@ public class IAnimal : MonoBehaviour
          
             //Cnt = 0;
             flag = true;
-            source.Play();
+           // source.Play();
             yield return new WaitForSeconds(0.1f);
             // objectToGenerate += 1;
         }
@@ -107,43 +110,73 @@ public class IAnimal : MonoBehaviour
         if(TimeEnd<time && DestroyFruit.ScorePlayer>=20)
         {
           //  Screen.gameObject.SetActive(true);
-            source.Stop();
+            //source.Stop();
           // Screen.GetComponent<Text>().text = Win;
             StartCoroutine(WaitForEnd());
             WLFlag = true;
             IAds = false;
             Console.ACnt = 1;
             StoreAnimalScore(SaveName.pname, DestroyFruit.ScorePlayer);
-            SceneManager.LoadScene("Console", LoadSceneMode.Single);
+            Time.timeScale = 0;
+            paused.SetActive(false);
+            gamePlay.SetActive(false);
+            console.SetActive(true);
+           // SceneManager.LoadScene("Console", LoadSceneMode.Single);
 
         }
         if (TimeEnd >= time && DestroyFruit.ScorePlayer<20)
         {
             //Screen.gameObject.SetActive(true);
-            source.Stop();
+           // source.Stop();
            // Screen.GetComponent<Text>().text = Loss;
             StartCoroutine(WaitForEnd());
             WLFlag = false;
             IAds = false;
             Console.ACnt = 1;
             StoreAnimalScore(SaveName.pname,DestroyFruit.ScorePlayer);
-            
-            SceneManager.LoadScene("Console", LoadSceneMode.Single);
+            Time.timeScale = 0;
+            paused.SetActive(false);
+            gamePlay.SetActive(false);
+            console.SetActive(true);
+            //SceneManager.LoadScene("Console", LoadSceneMode.Single);
         }
     }
     // Start is called before the first frame update
     void StoreAnimalScore(string playern, int players)
     {
+       // string val = "0";
         int len = SaveName.animalname.Count;
         for (int k = 0; k < len; k = k + 2)
         {
+           /* SaveName.animalname[k + 1] = players.ToString();
+            PlayerPrefs.SetString(SaveName.animalname[k + 1], players.ToString());
+            PlayerPrefs.Save();
+            break;*/
+
+            
+            
             if (string.Compare(SaveName.animalname[k], playern) == 0)
             {
-
-                SaveName.animalname[k + 1] = players.ToString();
-                PlayerPrefs.SetString(SaveName.animalname[k + 1], players.ToString());
-                PlayerPrefs.Save();
-                break;
+               
+                if (int.Parse(SaveName.animalname[k + 1]) == 0)
+                {
+                    SaveName.animalname[k + 1] = players.ToString();
+                    PlayerPrefs.SetString(SaveName.animalname[k + 1], players.ToString());
+                    PlayerPrefs.Save();
+                    break;
+                }
+                else
+                {
+                    int val = int.Parse(SaveName.animalname[k + 1]);
+                    if (val<players)
+                    {
+                        SaveName.animalname[k + 1] = players.ToString();
+                        PlayerPrefs.SetString(SaveName.animalname[k + 1], players.ToString());
+                        PlayerPrefs.Save();
+                        break;
+                    }
+                   
+                }
             }
         }
     }

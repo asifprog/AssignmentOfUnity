@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class GamePlay : MonoBehaviour
 {
     // Start is called before the first frame update
+    public GameObject paused;
+    public GameObject gamePlay;
+    public GameObject console;
     void Start()
     {
         
@@ -18,6 +21,11 @@ public class GamePlay : MonoBehaviour
     }
     public void PauseToPause()
     {
-        SceneManager.LoadScene("Paused", LoadSceneMode.Single);
+        Time.timeScale = 0;
+        paused.SetActive(true);
+        gamePlay.SetActive(false);
+        console.SetActive(false);
+
+        //SceneManager.LoadScene("Paused", LoadSceneMode.Single);
     }
 }

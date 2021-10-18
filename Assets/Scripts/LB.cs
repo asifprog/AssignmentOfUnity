@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class LB : MonoBehaviour
 {
     // Start is called before the first frame update
+    public GameObject leaderBoard;
+    public GameObject menu;
+    public GameObject animalSelect;
     void Start()
     {
         
@@ -19,11 +22,27 @@ public class LB : MonoBehaviour
     public void LeaderBoard()
     {
 
-        SceneManager.LoadScene("LeaderBoard", LoadSceneMode.Single);
+        leaderBoard.SetActive(true);
+        menu.SetActive(false);
+        animalSelect.SetActive(false);
+       // SceneManager.LoadScene("LeaderBoard", LoadSceneMode.Single);
     }
     public void LeaderBoardExit()
     {
 
-        SceneManager.LoadScene("Console", LoadSceneMode.Single);
+        leaderBoard.SetActive(false);
+        menu.SetActive(true);
+        animalSelect.SetActive(false);
+
+        //SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+    }
+    public void AnimalSelect()
+    {
+
+        leaderBoard.SetActive(false);
+        menu.SetActive(false);
+        animalSelect.SetActive(true);
+
+        //SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
 }

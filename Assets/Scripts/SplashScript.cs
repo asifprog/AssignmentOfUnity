@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class SplashScript : MonoBehaviour
 {
     private bool finished = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,14 +17,8 @@ public class SplashScript : MonoBehaviour
     IEnumerator SplashWindow()
     {
         yield return  new WaitForSeconds(3);
-        yield return finished = true;
+        SceneManager.LoadScene(SceneName.sceneOfGame.Menu.ToString(), LoadSceneMode.Single);
     }
-    private void LateUpdate()
-    {
-        if(finished==true)
-        {
-            SceneManager.LoadScene("Menu", LoadSceneMode.Single);
-        }
-    }
-    // Update is called once per frame
+
+
 }

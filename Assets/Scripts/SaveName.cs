@@ -13,7 +13,8 @@ public class SaveName : MonoBehaviour
     public void Onclicked()
     {
         pname = InputPlayerName.inputname;
-        CheckAdd(InputPlayerName.inputname);
+        CheckAdd(pname);
+
     }
   
     public void CheckAdd(string name)
@@ -25,11 +26,14 @@ public class SaveName : MonoBehaviour
                 animalname.Add(name);
                 animalname.Add(DestroyFruit.ScorePlayer.ToString());
 
+                Debug.Log(name);
+                Debug.Log(DestroyFruit.ScorePlayer.ToString());
+
                 // Debug.Log("called");
                 // animalname[0] = prefabs[0].name;
 
                 // cntanimal = 0;
-                OnDestroy();
+                OnEnd();
             }
         }
         else
@@ -37,11 +41,12 @@ public class SaveName : MonoBehaviour
             animalname.Add(name);
             animalname.Add(DestroyFruit.ScorePlayer.ToString());
 
-             Debug.Log("called");
+            Debug.Log(name);
+            Debug.Log(DestroyFruit.ScorePlayer.ToString());
             // animalname[0] = prefabs[0].name;
 
             // cntanimal = 0;
-            OnDestroy();
+            OnEnd();
         }
 
     }
@@ -63,7 +68,7 @@ public class SaveName : MonoBehaviour
         }
         return false;
     }
-    void OnDestroy()
+    void OnEnd()
     {
         PlayerPrefs.SetString(animalname[cntanimal], InputPlayerName.inputname);
         PlayerPrefs.SetString(animalname[cntanimal + 1], DestroyFruit.ScorePlayer.ToString());

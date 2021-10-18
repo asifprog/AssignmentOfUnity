@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class Paused : MonoBehaviour
 {
     // Start is called before the first frame update
+    public GameObject paused;
+    public GameObject gamePlay;
+    public GameObject console;
     void Start()
     {
         
@@ -18,14 +21,25 @@ public class Paused : MonoBehaviour
     }
     public void ResumeToGamePlay()
     {
-        SceneManager.LoadScene("BrightDay", LoadSceneMode.Single);
+        paused.SetActive(false);
+        gamePlay.SetActive(true);
+        console.SetActive(false);
+        Time.timeScale = 1;
+
+        // SceneManager.LoadScene("BrightDay", LoadSceneMode.Single);
     }
     public void CrossToGamePlay()
     {
-        SceneManager.LoadScene("BrightDay", LoadSceneMode.Single);
+        paused.SetActive(false);
+        gamePlay.SetActive(true);
+        console.SetActive(false);
+
+        Time.timeScale = 1;
+
+        //SceneManager.LoadScene("BrightDay", LoadSceneMode.Single);
     }
     public void MenuToMenu()
     {
-        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+        SceneManager.LoadScene(SceneName.sceneOfGame.Menu.ToString(), LoadSceneMode.Single);
     }
 }
