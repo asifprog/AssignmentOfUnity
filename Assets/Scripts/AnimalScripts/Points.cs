@@ -16,8 +16,6 @@ public class Points : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        //IAnimal
-       // DestroyFruit
-        TextDisplay.GetComponent<Text>().text =DestroyFruit.ScorePlayer.ToString();
+        TextDisplay.GetComponent<Text>().text = PlayerPrefs.GetString(DestroyFruit.ScorePlayer.ToString());
     }
 }

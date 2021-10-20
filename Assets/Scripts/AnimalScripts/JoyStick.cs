@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class JoyStick : MonoBehaviour
 {
-    // Start is called before the first frame update
     private Rigidbody rb;
     private float MoveSpeed = 1f;
 
@@ -17,9 +16,6 @@ public class JoyStick : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<AnimalMovement>();
         joystick = FindObjectOfType<FixedJoystick>();
-        // joystick = getcomponant.FindWithTag(Jystick).GetComponent<FixedJoystick>();
-
-        // animgetcompnet<Playernimation>()
     }
     void Start()
     {

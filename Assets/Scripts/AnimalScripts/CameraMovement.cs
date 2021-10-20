@@ -6,14 +6,9 @@ public class CameraMovement : MonoBehaviour
     
 {
     public static CameraMovement instance;
-    // Start is called before the first frame update
-    //public GameObject[] prefabs;
     private Vector3 offset;
     [SerializeField]private GameObject player;
     private bool isInitialized = false;
-    // int i = IAnimal.Cnt;
-    //int i ;
-    // Start is called before the first frame update
     private void Awake()
     {
         if (instance != null)
