@@ -27,14 +27,14 @@ public class MusicButton : MonoBehaviour
             MusiScript.Instance.PauseMusic(true);
             PlayPref.checkmusicplay ="true";
             PlayerPrefs.SetString(PlayPref.checkmusicplay, "true");
-            musicOnOff.GetComponent<Text>().text = "Music ON";
+            musicOnOff.GetComponent<Text>().text = "Music OFF";
         }
         else
         {
             MusiScript.Instance.PauseMusic(false);
             PlayPref.checkmusicplay = "false";
             PlayerPrefs.SetString(PlayPref.checkmusicplay, "false");
-            musicOnOff.GetComponent<Text>().text = "Music OFF";
+            musicOnOff.GetComponent<Text>().text = "Music ON";
         }
     }
 
