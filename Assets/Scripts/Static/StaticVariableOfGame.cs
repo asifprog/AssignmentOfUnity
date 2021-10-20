@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StaticVariableOfGame : MonoBehaviour
 {
-    public static bool musicPlay=true;
+    
+
 
 }

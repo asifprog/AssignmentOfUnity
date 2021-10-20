@@ -5,4 +5,5 @@ using UnityEngine;
 public class PlayPref : MonoBehaviour
 {
     public static string musicPlay ="0";
+    public static string checkmusicplay= "true";
 }
